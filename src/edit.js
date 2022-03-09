@@ -28,7 +28,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	// Data to populate the HTML options element.
 	const options = Object.keys( countries ).map( ( code ) => ( {
 		value: code,
-		label: getEmojiFlag( code ) + '  ' + countries[ code ] + ' — ' + code,
+		label: `${ getEmojiFlag( code ) } ${ countries[ code ] }  — ${ code }`,
 	} ) );
 
 	// Use state with a default of false.
@@ -107,7 +107,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'XWP Country Card', 'xwp-country-card' ) }
 						isColumnLayout={ true }
 						instructions={ __(
-							'Type in a name of a contry you want to display on you site.',
+							'Type in a name of a country you want to display on your site.',
 							'xwp-country-card'
 						) }
 					>
