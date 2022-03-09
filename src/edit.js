@@ -3,7 +3,7 @@
  */
 import { edit, globe } from '@wordpress/icons';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
+import { useSelect } from '@wordpress/data';
 import { BlockControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	ComboboxControl,
@@ -53,19 +53,19 @@ export default function Edit( { attributes, setAttributes } ) {
 		}
 	};
 
+	const { fetchedRelatedPosts } = useSelect( ( select ) => {
+		const data = select( 'core' ).getEntityRecords( 'postType', 'post', {
+			exclude: select( 'core/editor' ).getCurrentPostId(),
+			search: countries[ countryCode ],
+			fields: [ 'id', 'title', 'excerpt', 'link' ],
+		} );
+
+		return { fetchedRelatedPosts: data };
+	} );
+
 	useEffect( () => {
 		async function getRelatedPosts() {
-			// Getting current post to exclude it
-			const postId = window.location.href.match( /post=([\d]+)/ )[ 1 ];
-
-			// Use apiFetch insted of window.fetch
-			const posts = await apiFetch( {
-				path: `/wp/v2/posts?search=${ countries[ countryCode ] }&exclude=${ postId }`,
-			} )
-				// Use catch statement for any error handling.
-				.catch( ( err ) => {
-					throw new Error( `HTTP error! Status: ${ err }` );
-				} );
+			const posts = fetchedRelatedPosts;
 
 			// Set the related Post attributes.
 			setAttributes( {
@@ -80,8 +80,8 @@ export default function Edit( { attributes, setAttributes } ) {
 
 		getRelatedPosts();
 
-		// Run this code if countryCode or setAttributes changes.
-	}, [ countryCode, setAttributes ] );
+		// Rerun this code if fetchedRelatedPosts or setAttributes changes.
+	}, [ fetchedRelatedPosts, setAttributes ] );
 
 	return (
 		<>
