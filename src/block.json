@@ -24,12 +24,12 @@
 				"title": {
 					"type": "string",
 					"selector": ".xwp-country-card__related-posts-list__title",
-					"source": "text"
+					"source": "html"
 				},
 				"excerpt": {
 					"type": "string",
 					"selector": ".xwp-country-card__related-posts-list__excerpt",
-					"source": "text"
+					"source": "html"
 				},
 				"link": {
 					"type": "string",
