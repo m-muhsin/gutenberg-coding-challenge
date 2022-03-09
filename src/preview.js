@@ -63,12 +63,18 @@ export default function Preview( { countryCode, relatedPosts } ) {
 									href={ relatedPost.link }
 									data-post-id={ relatedPost.id }
 								>
-									<h4 className="xwp-country-card__related-posts-list__title">
-										{ relatedPost.title }
-									</h4>
-									<p className="xwp-country-card__related-posts-list__excerpt">
-										{ relatedPost.excerpt }
-									</p>
+									<h4
+										className="xwp-country-card__related-posts-list__title"
+										dangerouslySetInnerHTML={ {
+											__html: relatedPost.title,
+										} }
+									/>
+									<p
+										className="xwp-country-card__related-posts-list__excerpt"
+										dangerouslySetInnerHTML={ {
+											__html: relatedPost.excerpt,
+										} }
+									/>
 								</a>
 							</li>
 						) ) }
