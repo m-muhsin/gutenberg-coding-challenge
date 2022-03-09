@@ -21,17 +21,15 @@ import { getEmojiFlag } from './utils';
 import Preview from './preview';
 import './editor.scss';
 
+// Data to populate the HTML options element.
+const options = Object.entries( countries ).map( ( [ code, country ] ) => ( {
+	value: code,
+	label: `${ getEmojiFlag( code ) } ${ country }  — ${ code }`,
+} ) );
+
 export default function Edit( { attributes, setAttributes } ) {
 	// Destructure the attributes.
 	const { countryCode, relatedPosts } = attributes;
-
-	// Data to populate the HTML options element.
-	const options = Object.entries( countries ).map(
-		( [ code, country ] ) => ( {
-			value: code,
-			label: `${ getEmojiFlag( code ) } ${ country }  — ${ code }`,
-		} )
-	);
 
 	// Use state with a default of false.
 	const [ isPreview, setPreview ] = useState( false );
