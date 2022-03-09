@@ -51,16 +51,19 @@ export default function Preview( { countryCode, relatedPosts } ) {
 				{ hasRelatedPosts && (
 					<ul className="xwp-country-card__related-posts-list">
 						{ relatedPosts.map( ( relatedPost, index ) => (
-							<li key={ index } className="related-post">
+							<li
+								key={ index }
+								className="xwp-country-card__related-posts-list__item"
+							>
 								<a
-									className="link"
+									className="xwp-country-card__related-posts-list__link"
 									href={ relatedPost.link }
 									data-post-id={ relatedPost.id }
 								>
-									<h4 className="title">
+									<h4 className="xwp-country-card__related-posts-list__title">
 										{ relatedPost.title }
 									</h4>
-									<p className="excerpt">
+									<p className="xwp-country-card__related-posts-list__excerpt">
 										{ relatedPost.excerpt }
 									</p>
 								</a>
