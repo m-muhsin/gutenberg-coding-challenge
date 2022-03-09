@@ -26,10 +26,12 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { countryCode, relatedPosts } = attributes;
 
 	// Data to populate the HTML options element.
-	const options = Object.keys( countries ).map( ( code ) => ( {
-		value: code,
-		label: `${ getEmojiFlag( code ) } ${ countries[ code ] }  — ${ code }`,
-	} ) );
+	const options = Object.entries( countries ).map(
+		( [ code, country ] ) => ( {
+			value: code,
+			label: `${ getEmojiFlag( code ) } ${ country }  — ${ code }`,
+		} )
+	);
 
 	// Use state with a default of false.
 	const [ isPreview, setPreview ] = useState( false );
