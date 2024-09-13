@@ -19,27 +19,27 @@
 		"relatedPosts": {
 			"type": "array",
 			"source": "query",
-			"selector": ".related-post",
+			"selector": ".xwp-country-card__related-posts-list__item",
 			"query": {
 				"title": {
 					"type": "string",
-					"selector": ".title",
-					"source": "text"
+					"selector": ".xwp-country-card__related-posts-list__title",
+					"source": "html"
 				},
 				"excerpt": {
 					"type": "string",
-					"selector": ".excerpt",
-					"source": "text"
+					"selector": ".xwp-country-card__related-posts-list__excerpt",
+					"source": "html"
 				},
 				"link": {
 					"type": "string",
-					"selector": ".link",
+					"selector": ".xwp-country-card__related-posts-list__link",
 					"source": "attribute",
 					"attribute": "href"
 				},
 				"id": {
 					"type": "string",
-					"selector": ".link",
+					"selector": ".xwp-country-card__related-posts-list__link",
 					"source": "attribute",
 					"attribute": "data-post-id"
 				}
